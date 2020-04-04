@@ -440,25 +440,25 @@ Let's examine the orders from MD. Make sure that you use the cleaned dataset, `o
 
 (1) How many orders (i.e. the number of orders, not the total amount) came from MD (Maryland)? (hint: use `filter()`) 
 ```{r}
-#order_zipcode_cleaned%>%
+nrow(order_zipcode_cleaned%>%filter(state=="MD"))
   
 ```
 
 (2) Are there any missing values in `order_total` among the orders from  MD? You will filter the orders from MD AND filter the orders that have `NA` in `order_total`. How many orders from MD has missing value for order total? (hint: use `filter()`)   
 ```{r}
-#order_zipcode_cleaned%>%
+nrow(order_zipcode_cleaned%>%filter(state=="MD")%>%filter(is.na(order_total)))
   
 ```
 
 (3) Calculate the average (i.e. mean) `order_total` of the orders from MD. Make sure to include `na.rm=()` option. Without this option, you may get NA as an answer if there is at least one `NA` in order total. (hint: use `summarise()` with `na.rm=()`). Which one of the following is the closest number?   
 ```{r}
-#order_zipcode_cleaned%>%
+order_zipcode_cleaned%>%filter(state=="MD")%>%summarise(mean(order_total,na.rm=T))
   
 ```
 
 (4) Count the number of orders by zipcode areas in MD. Which zip code area received more than 100 orders?  
 ```{r}
-#order_zipcode_cleaned%>%
+subset(as.data.frame(with(order_zipcode_cleaned%>%filter(state == "MD"),table(zip_code)))$zip_code,as.data.frame(with(order_zipcode_cleaned%>%filter(state == "MD"),table(zip_code)))$Freq>100)
 
 ```
 

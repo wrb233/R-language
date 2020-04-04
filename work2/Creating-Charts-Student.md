@@ -286,35 +286,35 @@ crimes%>%
 By modifying the code below, create box plots that show the range of the violent crime rate for each state in the South region, where each box represents a state. FYI, six states are categorized as South in the dataset. After creating the chart, answer the following questions. 
 
 ```{r}
-# crimes%>%
-#   _______(____=="______")%>%
-#   ggplot(aes(x=______,y=_______))+geom_boxplot()
+ crimes%>%
+   filter(region=="South")%>%
+   ggplot(aes(x=state,y=violent_crime_rate))+geom_boxplot()
 ```
 Q1. Which state has the city that has the lowest violent crime rate in the South region? 
-
+AL
 
 Q2. Which state has the highest median value of the violent crime rate? 
-
+TN
 Q3. By modifying the code below, create scatterplots that show the relationship between the officer assault rate (x-axis) and the murder rate (y-axis) by the states in the Northeast region. It will produce four scatter plots with regression lines, one for each state.  
 
-Which state shows the strongest *negative* correlation (i.e. the steeper, downward slope of regression lines)?  
+Which state shows the strongest *negative* correlation (i.e. the steeper, downward slope of regression lines)?NJ  
 
 ```{r}
-# crimes%>%
-#   filter(___=="___")%>%
-#   ggplot(aes(x=______,y=_____))+
-#   geom_point(shape=1)+
-#   geom_smooth(method=lm,fullrange=TRUE)+
-#   facet_wrap(~_____)
+ crimes%>%
+   filter(region=="Northeast")%>%
+   ggplot(aes(x=officer_assault_rate,y=murder_rate))+
+   geom_point(shape=1)+
+   geom_smooth(method=lm,fullrange=TRUE)+
+   facet_wrap(~state)
 ```
 
 Q4.By modifying the code below, create a histogram that shows the distribution of property crime rate in year 2002. Set the binwidth=2000. Which of the bins contains the largest number of cities?
 
 ```{r}
-# crimes%>%
-#   filter(________)%>%
-#   ggplot(aes(_______))+
-#   ________(binwidth=2000, colour="black",fill="white")
+ crimes%>%
+   filter(year==2002)%>%
+   ggplot(aes(x=property_crime_rate))+
+   geom_histogram(binwidth=2000, colour="black",fill="white")
 ```
 (1) The bin whose x-axis values go from 0 to 2500.
 (2) The bin whose x-axis values go from 2500 to 5000.

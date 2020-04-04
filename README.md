@@ -1,1 +1,1 @@
-# R-language
+# R-language simple exercises
